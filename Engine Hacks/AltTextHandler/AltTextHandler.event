@@ -1,0 +1,36 @@
+//hook in text handler function located at 0x805EEB4
+PUSH
+ORG 0x5EEB8
+jumpToHack(AltTextHandler|1)
+POP
+
+MESSAGE new thing at currentOffset
+ALIGN 4
+AltTextHandler:
+#incbin "AltTextHandler.dmp"
+POIN NewTextTable
+
+#define IsTextID 0x8000
+
+ALIGN 4
+NewTextTable:
+POIN Text1 //1|IsTextID
+POIN Text2 //2|IsTextID
+POIN Text3 //3|IsTextID
+
+#define TextPlaySound(songID) "BYTE 0x03 0x00 songID"
+
+Text1:
+TextPlaySound($8E)
+String("First text entry!")
+BYTE 0
+
+Text2:
+TextPlaySound($8F)
+String("Second text entry!")
+BYTE 0
+
+Text3:
+TextPlaySound($90)
+String("Third text entry!")
+BYTE 0

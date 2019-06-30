@@ -1,0 +1,6 @@
+#include "Custom Definitions.event"
+ORG FreeSpace
+
+#include "Engine Hacks/AltTextHandler/AltTextHandler.event"
+MESSAGE "Hacks block ends at currentOffset"
+
