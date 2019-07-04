@@ -1,6 +1,7 @@
 //hook in text handler function located at 0x805EEB4
 PUSH
-ORG 0x5EEB8
+ORG 0x5EEDE
+BYTE $C0 $46
 jumpToHack(AltTextHandler|1)
 POP
 
@@ -14,6 +15,7 @@ POIN NewTextTable
 
 ALIGN 4
 NewTextTable:
+WORD 0 //so we count up from 1 instead of 0 so I don't keep forgetting to offset IDs by 1
 POIN Text1 //1|IsTextID
 POIN Text2 //2|IsTextID
 POIN Text3 //3|IsTextID
@@ -21,16 +23,16 @@ POIN Text3 //3|IsTextID
 #define TextPlaySound(songID) "BYTE 0x03 0x00 songID"
 
 Text1:
-TextPlaySound($8E)
+//TextPlaySound($8E)
 String("First text entry!")
 BYTE 0
 
 Text2:
-TextPlaySound($8F)
+//TextPlaySound($8F)
 String("Second text entry!")
 BYTE 0
 
 Text3:
-TextPlaySound($90)
+//TextPlaySound($90)
 String("Third text entry!")
 BYTE 0
